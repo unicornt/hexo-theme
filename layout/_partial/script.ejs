@@ -1,0 +1,69 @@
+<!--SCRIPTS-->
+<%- js('assets/js/scrip-2ucz571kefr7qw2vkks0xbi45hkywz41m91xxg3om14oldadeh8y0f8mifkc.min.js') %>
+<!--SCRIPTS END-->
+<% if (post.comments) { %>
+    <% if (theme.disqus_shortname) { %>
+        <script>
+             var disqus_config = function () {
+                 this.page.url = '<%= post.permalink %>';
+                 <% if (post.disqusIdentifier) { %>
+                    this.page.identifier = '<%= post.disqusIdentifier %>';
+                 <% } else { %>
+                    this.page.identifier = '<%= post.path %>';
+                 <% } %>                 
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = '<%= theme.disqus_shortname %>';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    <% } else if (theme.duoshuo_shortname && post.id !== undefined ) { %>
+        <script type="text/javascript">
+            var duoshuoQuery = {short_name:'<%= theme.duoshuo_shortname %>'};
+            (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//dn-quericyblog.qbox.me/embed1.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+            })();
+        </script>
+    <% } %>
+<% } %>
+<script type="text/javascript">      
+     var search_path = "<%= config.search.path %>";
+     if (search_path.length == 0) {
+        search_path = "search.xml";
+     }
+     var path = "<%= config.root %>" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/tomorrow.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>
+hljs.initHighlightingOnLoad();
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" async
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-85906317-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
